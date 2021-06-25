@@ -6,6 +6,7 @@ describe('workspace-project App', () => {
   var subpageTitle = element(by.id('subpageTitle'));
   var registrationLink =  element(by.id('registration-navbar'));
   var bracketsLink =  element(by.id('brackets-navbar'));
+  var helloLink =  element(by.id('hello-navbar'));
   var contestant0 = element(by.id('contestant0'));
   var contestant1 = element(by.id('contestant1'));
   var contestant2 = element(by.id('contestant2'));
@@ -31,6 +32,39 @@ describe('workspace-project App', () => {
     page.navigateTo();
     browser.get('/');
     expect(subpageTitle.getText()).toEqual('Brackets App');
+    expect(element(by.css('h2')).getText()).toEqual('Brackets App');
+    
+        
+   });
+
+  it('should go to Registration page', function() {
+    page.navigateTo();
+    browser.get('/');
+    registrationLink.click();
+    
+    expect(element(by.css('h2')).getText()).toEqual('Register Players');
+    
+        
+   });
+
+   it('should go to Brackets page', function() {
+    page.navigateTo();
+    browser.get('/');
+    bracketsLink.click();
+    
+    expect(element(by.css('h2')).getText()).toEqual('Brackets');
+    
+        
+   });
+
+   it('should navigate back to welcome page from Brackets page', function() {
+    page.navigateTo();
+    browser.get('/');
+    bracketsLink.click();
+    
+    expect(element(by.css('h2')).getText()).toEqual('Brackets');
+    
+    helloLink.click();
     expect(element(by.css('h2')).getText()).toEqual('Brackets App');
     
         
