@@ -1,7 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
 
-describe('workspace-project App', () => {
+describe('routing-project App', () => {
   let page: AppPage;
   var subpageTitle = element(by.id('subpageTitle'));
   var registrationLink =  element(by.id('registration-navbar'));
