@@ -70,4 +70,25 @@ describe('workspace-project App', () => {
         
    });
 
+   it('testing routes', () => {
+    browser.sleep(2000).then(function(){
+      checkNavbarTexts();
+      
+    });
+  }); 
+
+  function checkNavbarTexts(){
+    element(by.id('hello-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Welcome');
+    });
+
+    element(by.id('registration-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Registration');
+    });
+
+    element(by.id('brackets-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Brackets');
+    });
+  }
+
 });
