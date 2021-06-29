@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
+import { checkNavbarTexts } from './routing.e2e-spec';
 
 describe('players brackets App', () => {
   let page: AppPage;
@@ -34,10 +35,11 @@ describe('players brackets App', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-  
+   
 
   it('should register and play with 4 contestants', function() {
     page.navigateTo();
+    checkNavbarTexts();
     browser.get('/');
     registrationLink.click();
 

@@ -1,6 +1,20 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
 
+export function checkNavbarTexts(){
+    element(by.id('hello-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Welcome');
+    });
+
+    element(by.id('registration-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Registration');
+    });
+
+    element(by.id('brackets-navbar')).getText().then(function(text){ // Promise
+      expect(text).toEqual('Brackets');
+    });
+  }
+
 describe('routing-project App', () => {
   let page: AppPage;
   var subpageTitle = element(by.id('subpageTitle'));
@@ -21,7 +35,7 @@ describe('routing-project App', () => {
   var autofillfourButton = element(by.id('autofillfour'));
   var autofilleightButton = element(by.id('autofilleight'));
 
-
+  
 
   beforeEach(() => {
     page = new AppPage();
@@ -77,18 +91,6 @@ describe('routing-project App', () => {
     });
   }); 
 
-  function checkNavbarTexts(){
-    element(by.id('hello-navbar')).getText().then(function(text){ // Promise
-      expect(text).toEqual('Welcome');
-    });
-
-    element(by.id('registration-navbar')).getText().then(function(text){ // Promise
-      expect(text).toEqual('Registration');
-    });
-
-    element(by.id('brackets-navbar')).getText().then(function(text){ // Promise
-      expect(text).toEqual('Brackets');
-    });
-  }
+  
 
 });
