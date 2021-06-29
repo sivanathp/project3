@@ -35,7 +35,7 @@ describe('players brackets App', () => {
   });
   
 
-  it('should register 4 contestants', function() {
+  it('should register and play with 4 contestants', function() {
     page.navigateTo();
     browser.get('/');
     registrationLink.click();
@@ -50,10 +50,10 @@ registerButton.click();
     
 
     bracketsLink.click();
-      var match1player1 = element(by.css('[name="match1player1"]')) 
-      var match1player2 = element(by.css('[name="match0player1"]')) 
-      var match0player1 = element(by.css('[name="match0player1"]')) 
-      var match0player2 = element(by.css('[name="match0player2"]')) 
+      var match1player1 = element(by.id('match1player1')); 
+      var match1player2 = element(by.id('match1player2')); 
+      var match0player1 = element(by.id('match0player1'));  
+      var match0player2 = element(by.id('match0player2'));
       
 
  
@@ -63,13 +63,41 @@ registerButton.click();
     match0player1.click();
     completeround.click();
     
-    expect(champion.getText()).toEqual('Ajna');
+    expect(champion.getText()).toEqual('Winner: Ajna');
 
     
         
    });
 
-it('should register 8 contestants', function() {
+it('should register and play with 2 contestants', function() {
+    page.navigateTo();
+    browser.get('/');
+    registrationLink.click();
+
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+registerButton.click();
+    
+    expect(registerMessage.getText()).toEqual('Ajna,Lewis');
+    
+
+    bracketsLink.click();
+      
+      var match0player1 = element(by.id('match0player1'));  
+      var match0player2 = element(by.id('match0player2'));
+      
+
+ 
+    match0player2.click();
+    completeround.click();
+    
+    expect(champion.getText()).toEqual('Winner: Lewis');
+
+    
+        
+   });
+
+it('should register and play with 8 contestants', function() {
     page.navigateTo();
     browser.get('/');
     registrationLink.click();
@@ -85,120 +113,34 @@ contestant7.sendKeys('Kyle');
 registerButton.click();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex,Li,Yang,Yorder,Kyle');
+
+bracketsLink.click();
+      var match1player1 = element(by.id('match1player1')); 
+      var match1player2 = element(by.id('match1player2')); 
+      var match0player1 = element(by.id('match0player1'));  
+      var match0player2 = element(by.id('match0player2'));
+      var match2player1 = element(by.id('match2player1')); 
+      var match2player2 = element(by.id('match2player2')); 
+      var match3player1 = element(by.id('match3player1'));  
+      var match3player2 = element(by.id('match3player2'));
+      
+
+    match1player1.click();
+    match0player1.click();
+    match2player2.click();
+    match3player2.click();
+    completeround.click();
+    match1player1.click();
+    match0player1.click();
+    completeround.click();
+    match0player2.click();
+    completeround.click();
+    
+    expect(champion.getText()).toEqual('Winner: Yang');
     
         
    });
 
-it('cannot register 3 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
 
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Should be 2, 4, or 8 contestants');
-    
-        
-   });
-
-it('cannot register 5 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Should be 2, 4, or 8 contestants');
-    
-        
-   });
-
-it('cannot register 7 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-contestant5.sendKeys('Yang');
-contestant6.sendKeys('Yorder');
-
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Should be 2, 4, or 8 contestants');
-    
-        
-   });
-
-it('cannot register 6 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-contestant5.sendKeys('Yang');
-
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Should be 2, 4, or 8 contestants');
-    
-        
-   });
-
-it('should autofill 2 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-    autofilltwoButton.click();
-    
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Zoe,Kaylee');
-    
-        
-   });
-
-it('should autofill 4 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-    autofillfourButton.click();
-    
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('John,Paul,George,Ringo');
-    
-        
-   });
-
-it('should autofill 8 contestants', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-    autofilleightButton.click();
-    
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Leia,Luke,Lando,Han,Chewy,R2D2,C3P0,Vader');
-    
-        
-   });
 
 });
