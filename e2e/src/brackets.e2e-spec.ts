@@ -21,6 +21,7 @@ describe('players brackets App', () => {
   var autofillfourButton = element(by.id('autofillfour'));
   var autofilleightButton = element(by.id('autofilleight'));
 
+ var roundmessage = element(by.id('bracketmessage'));
 
   var completeround = element(by.id('completeroundbtn'));
 
@@ -170,6 +171,57 @@ bracketsLink.click();
         
    });
 
+it('should register and choose winner for all matches with 8 contestants', function() {
+    page.navigateTo();
+    browser.get('/');
+    registrationLink.click();
+
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+contestant2.sendKeys('Orsega');
+contestant3.sendKeys('Alex');
+contestant4.sendKeys('Li');
+contestant5.sendKeys('Yang');
+contestant6.sendKeys('Yorder');
+contestant7.sendKeys('Kyle');
+registerButton.click();
+    
+    expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex,Li,Yang,Yorder,Kyle');
+
+bracketsLink.click();
+      var match1player1 = element(by.id('match1player1')); 
+      var match1player2 = element(by.id('match1player2')); 
+      var match0player1 = element(by.id('match0player1'));  
+      var match0player2 = element(by.id('match0player2'));
+      var match2player1 = element(by.id('match2player1')); 
+      var match2player2 = element(by.id('match2player2')); 
+      var match3player1 = element(by.id('match3player1'));  
+      var match3player2 = element(by.id('match3player2'));
+      
+
+    match1player1.click();
+    match0player1.click();
+completeround.click();
+expect(roundmessage.getText()).toEqual('Please complete all matches');
+    match2player2.click();
+completeround.click();
+expect(roundmessage.getText()).toEqual('Please complete all matches');
+    
+    match3player2.click();
+    completeround.click();
+    match1player1.click();
+completeround.click();
+expect(roundmessage.getText()).toEqual('Please complete all matches');
+
+    match0player1.click();
+    completeround.click();
+    match0player2.click();
+    completeround.click();
+    
+    expect(champion.getText()).toEqual('Winner: Yang');
+    
+        
+   });
 
 
 });
