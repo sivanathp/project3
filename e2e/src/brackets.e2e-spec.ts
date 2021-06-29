@@ -97,6 +97,35 @@ registerButton.click();
         
    });
 
+
+it('match winner should be selected in 2 contestants', function() {
+    page.navigateTo();
+    browser.get('/');
+    registrationLink.click();
+
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+registerButton.click();
+    
+    expect(registerMessage.getText()).toEqual('Ajna,Lewis');
+    
+
+    bracketsLink.click();
+      
+      var match0player1 = element(by.id('match0player1'));  
+      var roundmessage = element(by.id('bracketmessage'));
+      
+
+ 
+    completeround.click();
+    
+    expect(roundmessage.getText()).toEqual('Please complete all matches');
+
+    
+        
+   });
+
+
 it('should register and play with 8 contestants', function() {
     page.navigateTo();
     browser.get('/');
