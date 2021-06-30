@@ -1,6 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
 import { checkNavbarTexts } from './routing.e2e-spec';
+import { registerEightPlayers, registerFourPlayers, registerTwoPlayers } from './registration.e2e-spec';
 
 describe('players brackets App', () => {
   let page: AppPage;
@@ -39,18 +40,7 @@ describe('players brackets App', () => {
 
   it('should register and play with 4 contestants', function() {
     page.navigateTo();
-    checkNavbarTexts();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-registerButton.click();
-    
-    expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex');
-    
+    registerFourPlayers();
 
     bracketsLink.click();
       var match1player1 = element(by.id('match1player1')); 
@@ -74,12 +64,7 @@ registerButton.click();
 
 it('should register and play with 2 contestants', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-registerButton.click();
+    registerTwoPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis');
     
@@ -103,12 +88,7 @@ registerButton.click();
 
 it('match winner should be selected in 2 contestants', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-registerButton.click();
+    registerTwoPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis');
     
@@ -131,18 +111,7 @@ registerButton.click();
 
 it('should register and play with 8 contestants', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-contestant5.sendKeys('Yang');
-contestant6.sendKeys('Yorder');
-contestant7.sendKeys('Kyle');
-registerButton.click();
+    registerEightPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex,Li,Yang,Yorder,Kyle');
 
