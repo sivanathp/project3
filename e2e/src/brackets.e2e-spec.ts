@@ -142,20 +142,9 @@ bracketsLink.click();
         
    });
 
-it('should register and choose winner for all matches with 8 contestants', function() {
+it('should select winner for all matches before click on complete round', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-contestant5.sendKeys('Yang');
-contestant6.sendKeys('Yorder');
-contestant7.sendKeys('Kyle');
-registerButton.click();
+    registerEightPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex,Li,Yang,Yorder,Kyle');
 
