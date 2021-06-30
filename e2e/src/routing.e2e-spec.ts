@@ -1,6 +1,9 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
 
+export var page: AppPage;
+export var registrationLink =  element(by.id('registration-navbar'));
+export var bracketsLink =  element(by.id('brackets-navbar'));
 export function checkNavbarTexts(){
     element(by.id('hello-navbar')).getText().then(function(text){ // Promise
       expect(text).toEqual('Welcome');
@@ -13,6 +16,19 @@ export function checkNavbarTexts(){
     element(by.id('brackets-navbar')).getText().then(function(text){ // Promise
       expect(text).toEqual('Brackets');
     });
+  }
+
+export function navigateToRegistrationPage(){
+     
+    browser.get('/');
+    registrationLink.click();
+  }
+
+export function navigateToBracketsPage(){
+    
+    browser.get('/');
+    bracketsLink.click();
+    
   }
 
 describe('routing-project App', () => {
@@ -52,9 +68,8 @@ describe('routing-project App', () => {
    });
 
   it('should go to Registration page', function() {
-    page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
+page.navigateTo();    
+navigateToRegistrationPage();
     
     expect(element(by.css('h2')).getText()).toEqual('Register Players');
     
@@ -62,9 +77,8 @@ describe('routing-project App', () => {
    });
 
    it('should go to Brackets page', function() {
-    page.navigateTo();
-    browser.get('/');
-    bracketsLink.click();
+page.navigateTo();
+    navigateToBracketsPage();
     
     expect(element(by.css('h2')).getText()).toEqual('Brackets');
     
@@ -72,9 +86,7 @@ describe('routing-project App', () => {
    });
 
    it('should navigate back to welcome page from Brackets page', function() {
-    page.navigateTo();
-    browser.get('/');
-    bracketsLink.click();
+    navigateToBracketsPage();
     
     expect(element(by.css('h2')).getText()).toEqual('Brackets');
     

@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
+import { navigateToRegistrationPage, navigateToBracketsPage} from './routing.e2e-spec';
 
 describe('players registration App', () => {
   let page: AppPage;
