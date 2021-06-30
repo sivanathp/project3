@@ -41,6 +41,17 @@ contestant3.sendKeys('Alex');
 registerButton.click();
     
   }
+
+export function registerTwoPlayers(){
+    
+    navigateToRegistrationPage();
+
+
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+registerButton.click();
+    
+  }
 describe('players registration App', () => {
   let page: AppPage;
   var subpageTitle = element(by.id('subpageTitle'));
@@ -67,7 +78,14 @@ describe('players registration App', () => {
     page = new AppPage();
   });
   
-
+  it('should register 2 contestants', function() {
+    page.navigateTo();
+    registerTwoPlayers();
+    
+    expect(registerMessage.getText()).toEqual('Ajna,Lewis');
+    
+        
+   });
 
   it('should register 4 contestants', function() {
     page.navigateTo();
