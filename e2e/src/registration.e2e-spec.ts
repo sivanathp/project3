@@ -2,6 +2,45 @@ import { AppPage } from './app.po';
 import { browser, logging , by, element} from 'protractor';
 import { navigateToRegistrationPage, navigateToBracketsPage} from './routing.e2e-spec';
 
+
+
+ export var contestant0 = element(by.id('contestant0'));
+ export  var contestant1 = element(by.id('contestant1'));
+ export  var contestant2 = element(by.id('contestant2'));
+ export  var contestant3 = element(by.id('contestant3'));
+ export  var contestant4 = element(by.id('contestant4'));
+ export  var contestant5 = element(by.id('contestant5'));
+ export  var contestant6 = element(by.id('contestant6'));
+ export  var contestant7 = element(by.id('contestant7'));
+ export  var registerButton = element(by.id('registerbtn'));
+
+export function registerEightPlayers(){
+    
+    navigateToRegistrationPage();
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+contestant2.sendKeys('Orsega');
+contestant3.sendKeys('Alex');
+contestant4.sendKeys('Li');
+contestant5.sendKeys('Yang');
+contestant6.sendKeys('Yorder');
+contestant7.sendKeys('Kyle');
+registerButton.click();
+    
+  }
+
+export function registerFourPlayers(){
+    
+    navigateToRegistrationPage();
+
+
+contestant0.sendKeys('Ajna');
+contestant1.sendKeys('Lewis');
+contestant2.sendKeys('Orsega');
+contestant3.sendKeys('Alex');
+registerButton.click();
+    
+  }
 describe('players registration App', () => {
   let page: AppPage;
   var subpageTitle = element(by.id('subpageTitle'));
@@ -29,16 +68,10 @@ describe('players registration App', () => {
   });
   
 
+
   it('should register 4 contestants', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-registerButton.click();
+    registerFourPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex');
     
@@ -47,18 +80,7 @@ registerButton.click();
 
 it('should register 8 contestants', function() {
     page.navigateTo();
-    browser.get('/');
-    registrationLink.click();
-
-contestant0.sendKeys('Ajna');
-contestant1.sendKeys('Lewis');
-contestant2.sendKeys('Orsega');
-contestant3.sendKeys('Alex');
-contestant4.sendKeys('Li');
-contestant5.sendKeys('Yang');
-contestant6.sendKeys('Yorder');
-contestant7.sendKeys('Kyle');
-registerButton.click();
+    registerEightPlayers();
     
     expect(registerMessage.getText()).toEqual('Ajna,Lewis,Orsega,Alex,Li,Yang,Yorder,Kyle');
     
